@@ -9,3 +9,6 @@ cdk.out
 !src/*
 src/package-lock.json
 src/node_modules
+
+.DS_Store
+**/.DS_Store

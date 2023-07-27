@@ -3,7 +3,7 @@ import { Construct } from 'constructs';
 import { EBEnvProps, EBApplnStack } from './eb-appln-stack';
 
 /**
- * Deployable unit of web service app
+ * Deployable unit of web service app.
  */
 export class CdkEBStage extends Stage {
 
