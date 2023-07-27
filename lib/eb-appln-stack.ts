@@ -86,7 +86,7 @@ export class EBApplnStack extends cdk.Stack {
        environmentName: props?.envName ?? "MyWebAppEnvironment",
        applicationName: app.applicationName || appName,
        // Updated solutionStackName here.
-       solutionStackName: '64bit Amazon Linux 2 v5.8.3 running Node.js 18',
+       solutionStackName: '64bit Amazon Linux 2023 v4.0.2 running Python 3.9',
        optionSettings: optionSettingProperties,
        versionLabel: appVersionProps.ref,
      });
