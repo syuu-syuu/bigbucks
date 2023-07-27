@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "purgecss": "^5.0.0",
+    "purify-css": "^1.2.5"
+  },
+  "scripts": {
+    "purify": "node purifycss.js"
+  },
+  "devDependencies": {
+    "glob": "^10.0.0",
+    "purifycss": "^1.2.6"
+  }
+}

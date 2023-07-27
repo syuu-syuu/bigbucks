@@ -1,0 +1,133 @@
+{% extends "base_subpage.html" %}
+
+
+
+{% block title %}
+<title>BigBucks - Profile</title>
+{% endblock %}
+
+
+{% block styling %}
+<link rel="stylesheet" href="fonts/icomoon/style.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+{% endblock%}
+
+
+{% block sub_header%}
+<a href="{{ url_for('users.user_profile') }}">My Account</a>
+{% endblock %}
+
+
+{% block sub_content%}
+<div class="containe py-lg-5">
+  <div class="card col-lg-5 mt-lg-0 mt-md-5 mt-4">
+    <div class="card-heading">
+      <h2>PROFILE</h2>
+    </div>
+    <div class="card-body">
+      <p>Username: {{ current_user.username }}</p>
+      <p>Email: {{ current_user.email }}</p>
+      <p>Joined on {{ current_user.registered_on.strftime("%A, %B %d, %Y") }}</p>
+    </div>
+  </div>
+
+  <div class="card col-lg-5 mt-lg-0 mt-md-5 mt-4">
+    <div class="card-heading">
+      <h2>BALANCE</h2>
+    </div>
+    <div class="card-body">
+      <form method="post">
+        <div class="form-row">
+          <div class="col-md-3 d-flex mr-n4">
+            <label for="deposit_amount" class="mb-0 w-100">Deposit to your account</label>
+          </div>
+          <div class="col-md-3">
+            <input type="text" id="deposit_amount" class="form-control mb-2 w-100" name="deposit_amount" required />
+          </div>
+          <div class="col-md-3">
+            <button type="submit" class="btn btn-primary mb-2 w-100">Submit</button>
+          </div>
+        </div>
+      </form>
+      <br />
+      <p>Balance($): {{ balance }}</p>
+
+    </div>
+  </div>
+
+  <div class="card col-lg-5 mt-lg-0 mt-md-5 mt-4">
+    <div class="card-heading">
+      <h2>STOCKS</h2>
+    </div>
+    <div class="card-body">
+      <p><a href="{{ url_for('stocks.portfolio') }}">My Portfolio</a></p>
+      <p><a href="{{ url_for('stocks.watchlist') }}">My Watchlist</a></p>
+      <p><a href="{{ url_for('stocks.transaction_history') }}">Transaction History</a></p>
+    </div>
+  </div>
+
+
+
+  <div class="card col-lg-5 mt-lg-0 mt-md-5 mt-4">
+    <div class="card-heading">
+      <h2>SETTING</h2>
+    </div>
+    <div class="card-body">
+      <p>To be added...</p>
+      <form action="{{ url_for('users.delete_account') }}" method="POST">
+        <input type="submit" class="btn btn-primary mb-2 w-40" value="Delete Account"
+          onclick="return confirm('Are you sure you want to delete your account?');">
+      </form>
+
+    </div>
+  </div>
+
+
+  <!-- Admin Actions-->
+  {% if current_user.is_authenticated and current_user.is_admin %}
+  <div class="card col-lg-5 mt-lg-0 mt-md-5 mt-4">
+    <div class="card-heading">
+      <h2>Admin Actions</h2>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Admin</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ 'Yes' if user.is_admin else 'No' }}</td>
+            <td>
+              {% if user.is_admin %}
+              <form action="{{ url_for('users.revoke_admin', user_id=user.id) }}" method="POST">
+                <input type="submit" value="Revoke Admin">
+              </form>
+              {% else %}
+              <form action="{{ url_for('users.grant_admin', user_id=user.id) }}" method="POST">
+                <input type="submit" value="Grant Admin">
+              </form>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Admin Actions-->
+</div>
+
+{% endif %}
+
+
+{% endblock %}

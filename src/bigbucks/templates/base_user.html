@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/user.css')}}" />
+    {% block title %}{% endblock %}
+
+</head>
+
+<body>
+    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+        <div class="container">
+            <div class="card login-card">
+                <div class="row no-gutters">
+                    <div class="col-md-5">
+                        {% block image %}
+                        {% endblock %}
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <div class="brand-wrapper">
+                            </div>
+                            {% block content %}
+                            {% endblock %}
+                            <nav class="login-card-footer-nav">
+                                <a href="{{ url_for('home.index')}}"> &#8249 Back to homepage</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<!-- flash messages -->
+<!-- supported categories: success, info, error, message (default) -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert__container alert__container-{{ category }}">
+    <div class="alert__content">
+        {% if category == 'info' %}
+        <i class="fas fa-exclamation-circle alert__icon"></i>
+        {% elif category == 'error' %}
+        <i class="fas fa-minus-circle alert__icon"></i>
+        {% elif category == 'success' %}
+        <i class="fas fa-check-circle alert__icon"></i>
+        {% else %}
+        <i class="fas fa-exclamation-circle alert__icon"></i>
+        {% endif %}
+        <div class="alert__text">
+            {{ message }}
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const alertContainers = document.querySelectorAll(".alert__container");
+
+        alertContainers.forEach(function (container) {
+            window.setTimeout(function () {
+                container.style.transition = "opacity 0.5s";
+                container.style.opacity = "0";
+
+                window.setTimeout(function () {
+                    container.remove();
+                }, 500);
+            }, 2000);
+        });
+    });
+</script>
+<!-- flash messages -->
+
+</html>

@@ -1,0 +1,160 @@
+{% extends "base_subpage.html" %}
+
+
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form_2.css') }}" />
+{% endblock %}
+
+{% block title %}
+<title>BigBucks - Trade</title>
+{% endblock %}
+
+
+
+{% block sub_header%}
+<a href="{{ url_for('stocks.trade_stock') }}">Trade</a>
+{% endblock %}
+
+{% block sub_content%}
+<div class="container py-lg-5 py-md-3">
+  <h3 class="title-big mb-4">Real-time transactions</h3>
+  <form method='POST' action="{{ url_for('stocks.trade_stock') }}">
+    <input type="hidden" name="form_id" value="form1" />
+    <div class="zf-subContWrap zf-rightAlign">
+      <ul>
+        <li class="zf-tempFrmWrapper zf-small">
+          <label class="zf-labelName">
+            Stock Symbol
+            <em class="zf-important">*</em>
+          </label>
+          <div class="zf-tempContDiv">
+            <span>
+              <input type="text" name="stock_symbol" required />
+            </span>
+          </div>
+        </li>
+
+        <li class="zf-tempFrmWrapper zf-small">
+          <label class="zf-labelName">
+            Number of Shares
+            <em class="zf-important">*</em>
+          </label>
+          <div class="zf-tempContDiv">
+            <span>
+              <input type="text" name="number_of_shares" required />
+            </span>
+          </div>
+        </li>
+
+        <li class="zf-tempFrmWrapper zf-small">
+          <label class="zf-labelName" for="buyOrSell">
+            Buy or Sell
+            <em class="zf-important">*</em>
+          </label>
+          <div class="zf-tempContDiv">
+            <select class="form-control" id="buyOrSell" name="buy_or_sell" required>
+              <option>Please-Choose-One</option>
+              <option value="buy">Buy</option>
+              <option value="sell">Sell</option>
+            </select>
+          </div>
+        </li>
+
+        <li class="zf-tempFrmWrapper zf-small">
+          <label class="zf-labelName" for="orderType">
+            Order Type
+            <em class="zf-important">*</em>
+          </label>
+          <div class="zf-tempContDiv">
+            <select class="form-control" id="orderType" name="order_type" required>
+              <option>Please-Choose-One</option>
+              <option value="market">Market Order</option>
+              <option value="limit">Limit Order</option>
+            </select>
+          </div>
+        </li>
+
+
+        <li class="zf-tempFrmWrapper zf-small"><label class="zf-labelName">
+            Limit Price
+          </label>
+          <div class="zf-tempContDiv">
+            <span> <input type="text" name="limit_price" /></span>
+            <p class="zf-instruction">Required if limit order is selected</p>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+    <ul>
+      <li class="text-center"><button class="btn btn-primary mt-sm-5 mt-4">Submit</button></li>
+    </ul>
+</div>
+</form>
+
+
+
+<div class="container py-lg-5 py-md-3">
+  <h3 class="title-big mb-4">Add historical transactions</h3>
+  <form method='POST' action="{{ url_for('stocks.trade_stock') }}">
+    <input type="hidden" name="form_id" value="form2" />
+    <div class="zf-subContWrap zf-rightAlign">
+      <ul>
+        <li class="zf-tempFrmWrapper zf-small">
+          <label class="zf-labelName">
+            Stock Symbol
+            <em class="zf-important">*</em>
+          </label>
+          <div class="zf-tempContDiv">
+            <span>
+              <input type="text" name="stock_symbol" required />
+            </span>
+          </div>
+        </li>
+
+        <li class="zf-tempFrmWrapper zf-small">
+          <label class="zf-labelName">
+            Number of Shares
+            <em class="zf-important">*</em>
+          </label>
+          <div class="zf-tempContDiv">
+            <span>
+              <input type="text" name="number_of_shares" required />
+            </span>
+          </div>
+        </li>
+
+        <li class="zf-tempFrmWrapper zf-small">
+          <label class="zf-labelName" for="buyOrSell">
+            Buy or Sell
+            <em class="zf-important">*</em>
+          </label>
+          <div class="zf-tempContDiv">
+            <select class="form-control" id="buyOrSell" name="buy_or_sell" required>
+              <option>Please-Choose-One</option>
+              <option value="buy">Buy</option>
+              <option value="sell">Sell</option>
+            </select>
+          </div>
+
+        <li class="zf-tempFrmWrapper zf-small">
+          <label class="zf-labelName" for="tradeTime">
+            Trade Time
+            <em class="zf-important">*</em>
+          </label>
+          <div class="zf-tempContDiv">
+            <span>
+              <input type="datetime-local" id="tradeTime" name="trade_time" required />
+            </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <ul>
+      <li class="text-center"><button class="btn  btn-primary mt-sm-5 mt-4">Submit</button></li>
+    </ul>
+</div>
+</form>
+
+{% endblock %}

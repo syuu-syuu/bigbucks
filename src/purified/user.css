@@ -1,0 +1,159 @@
+body {
+  font-family: "Karla", sans-serif;
+  background-color: #e8e3ed;
+  min-height: 100vh;
+}
+
+.brand-wrapper {
+  margin-bottom: 19px;
+}
+
+.login-card {
+  border: 0;
+  border-radius: 27.5px;
+  box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
+  overflow: hidden;
+}
+
+.login-card-img {
+  border-radius: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.login-card .card-body {
+  padding: 85px 60px 60px;
+}
+
+@media (max-width: 422px) {
+  .login-card .card-body {
+    padding: 35px 24px;
+  }
+}
+
+.login-card-description {
+  font-size: 25px;
+  color: #3f3a64;
+  font-weight: normal;
+  margin-bottom: 23px;
+}
+
+.login-card form {
+  max-width: 326px;
+}
+
+.login-card .form-control {
+  color: #000;
+}
+
+.login-card .form-control:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 50px white inset;
+  -webkit-text-fill-color: #000;
+}
+
+.login-card .form-control:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 50px white inset;
+  -webkit-text-fill-color: #000;
+}
+
+.login-card .login-btn {
+  padding: 13px 20px 12px;
+  background-color: #000;
+  border-radius: 4px;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 20px;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.login-card .login-btn:hover {
+  border: 1px solid #000;
+  background-color: transparent;
+  color: #000;
+}
+
+.login-card .forgot-password-link {
+  font-size: 14px;
+  color: #919aa3;
+  margin-bottom: 12px;
+}
+
+.login-card-footer-text {
+  font-size: 16px;
+  color: #0d2366;
+  margin-bottom: 60px;
+}
+
+@media (max-width: 767px) {
+  .login-card-footer-text {
+    margin-bottom: 24px;
+  }
+}
+
+.login-card-footer-nav a {
+  font-size: 14px;
+  color: #919aa3;
+}
+
+
+.field+.field {
+  margin-top: 1.5rem;
+}
+
+.checkbox {
+  display: flex;
+}
+
+.checkbox label {
+  order: 1;
+  margin-left: 1ch;
+}
+
+.checkbox input {
+  order: 0;
+}
+
+input[type="checkbox"] {
+  height: 1.0em;
+  width: 1.0em;
+}
+
+
+
+/* Message Styling */
+
+.alert__container {
+  background-color: rgba(255, 255, 255, 0.85);
+  position: fixed;
+  top: 100px;
+  right: 10px;
+  z-index: 9999;
+  width: 30%;
+  min-height: 40px;
+  padding: 0rem 1.25rem;
+  border-radius: .25rem;
+  border-left: 4px solid;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.alert__content {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  width: 100%;
+}
+
+.alert__text {
+  font-size: 1rem;
+  margin: 0 0.5rem;
+}
+
+/* Message Styling */

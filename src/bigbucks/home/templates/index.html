@@ -1,0 +1,322 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<!-- main-slider -->
+<section class="w3l-main-slider" id="home">
+  <div class="companies20-content">
+    <div class="owl-one owl-carousel owl-theme">
+      <div class="item">
+        <li>
+          <div class="slider-info banner-view bg bg2">
+            <div class="banner-info">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-6 banner-info-bg">
+                    <h5>Welcome to the BigBucks!</h5>
+                    <p class="mt-md-4 mt-3">
+                      Track your personal stock portfolio and view historical
+                      stock charts.
+                    </p>
+                    {% if not current_user.is_authenticated %}
+                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="{{ url_for('users.register')}}">
+                      Register Now</a>
+                    {% endif %}
+                    <a class="btn btn-style btn-outline-light mt-sm-5 mt-4 mr-2" href="{{ url_for('home.about')}}">
+                      Read More</a>
+                  </div>
+                  <div class="col-lg-5 col-md-8 img offset-lg-1 mt-lg-0 mt-4">
+                    <img src="{{ url_for('static', filename='/img/card1.png') }}" alt="img"
+                      class="img-fluid radius-image-curve" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </div>
+
+      <div class="item">
+        <li>
+          <div class="slider-info banner-view banner-top3 bg bg2">
+            <div class="banner-info">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-6 banner-info-bg">
+                    <h5>Making you financially well</h5>
+                    <p class="mt-md-4 mt-3">
+                      Take control of your finances and manage your stock
+                      inventory like a pro with our easy-to-use website.
+                    </p>
+
+                    {% if not current_user.is_authenticated %}
+                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="{{ url_for('users.register')}}">
+                      Register Now</a>
+                    {% endif %}
+
+                    <a class="btn btn-style btn-outline-light mt-sm-5 mt-4 mr-2" href="{{ url_for('home.about')}}">
+                      Read More</a>
+                  </div>
+                  <div class="col-lg-5 col-md-8 img offset-lg-1 mt-lg-0 mt-4">
+                    <img src="{{ url_for('static', filename='/img/card2.png') }}" alt="img"
+                      class="img-fluid radius-image-curve" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /main-slider -->
+
+<!-- home page block1 -->
+{% if current_user.is_authenticated %}
+<section id="about" class="home-services pt-lg-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="box-wrap">
+          <div class="box-wrap-grid">
+            <div class="icon">
+              <a href="{{url_for('stocks.portfolio')}}"><span class="fa fa-sharp fa-solid fa-receipt fa-xl"></span></a>
+            </div>
+            <div class="info">
+              <p>Total Asset</p>
+              <h4><a href="{{url_for('stocks.portfolio')}}">${{ summary.total_asset }}</a></h4>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-md-0 mt-4">
+        <div class="box-wrap">
+          <div class="box-wrap-grid">
+            <div class="icon">
+              <a href="{{url_for('stocks.portfolio')}}"><span class="fa fa-money"></span></a>
+            </div>
+            <div class="info">
+              <p>Total Earnings</p>
+              <h4><a href="{{url_for('stocks.portfolio')}}">${{ summary.total_earnings }}</a></h4>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-lg-0 mt-4">
+        <div class="box-wrap">
+          <div class="box-wrap-grid">
+            <div class="icon">
+              <a href="{{url_for('stocks.portfolio')}}"><span class="fa fa-line-chart"></span></a>
+            </div>
+            <div class="info">
+              <p>Total Return</p>
+              <h4><a href="{{url_for('stocks.portfolio')}}">{{ summary.total_return }}%</a></h4>
+
+            </div>
+          </div>
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+<!-- //home page block1 -->
+
+
+<!--  News section -->
+<div class="w3l-news" id="news">
+  <section id="grids5-block" class="py-5">
+    <div class="container py-lg-5 py-md-4 py-2">
+      <h3 class="title-big text-center">Trending Analysis</h3>
+      <div class="row mt-lg-5 mt-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="grids5-info">
+            <a href="#blog-single" class="d-block zoom"><img src="{{ url_for('static', filename='/img/blog1.jpg')}}"
+                alt="" class="img-fluid news-image" /></a>
+            <div class="blog-info">
+              <h4>
+                <a href="https://seekingalpha.com/article/4593186-alphabet-has-slapped-nvidia-with-a-reality-check">Alphabet
+                  Has Slapped Nvidia With A Reality Check</a>
+              </h4>
+              <p class="date">
+                <span class="fa fa-calendar mr-2"></span> April 10, 2023
+              </p>
+              <p>
+                As is often the case for new technology, this time with Generative AI, a high dose of hype seems to
+                have blurred the horizon, with Nvidia's valuations pointing toward a monopoly status.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mt-md-0 mt-5">
+          <div class="grids5-info">
+            <a href="#blog-single" class="d-block zoom"><img src="{{ url_for('static', filename='/img/blog2.jpg')}}"
+                alt="" class="img-fluid news-image" /></a>
+            <div class="blog-info">
+              <h4>
+                <a href="https://seekingalpha.com/article/4593140-apple-stock-will-be-a-buy-after-the-great-correction">Apple
+                  Stock Will Be A Buy After The Great Correction</a>
+              </h4>
+              <p class="date">
+                <span class="fa fa-calendar mr-2"></span> Aril 10, 2023
+              </p>
+              <p>
+                A lot has been written about the high-tech sector's correction. But AAPL stock has stayed almost
+                intact.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mt-lg-0 mt-5">
+          <div class="grids5-info">
+            <a href="#blog-single" class="d-block zoom"><img src="{{ url_for('static', filename='/img/blog3.jpg')}}"
+                alt="" class="img-fluid news-image" /></a>
+            <div class="blog-info">
+              <h4>
+                <a href="https://seekingalpha.com/article/4593163-big-opportunity-panic-2-fat-yields">Big Opportunity
+                  In The Panic: 2 Fat Yields Up To 9%</a>
+              </h4>
+              <p class="date">
+                <span class="fa fa-calendar mr-2"></span> Aril 10, 2023
+              </p>
+              <p>
+                Windsor Fund outperformed the S&P 500 in 23 out of 31 years with a 13.7% annual return, with dividends
+                making a notable influence.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <a id="btn-special" class="btn btn-style btn-primary mt-sm-5 mt-4" href="https://seekingalpha.com/">View all
+          blog posts</a>
+      </div>
+    </div>
+  </section>
+</div>
+<!--  //News section -->
+
+<!-- footer -->
+<section class="w3l-footer-29-main">
+  <div class="footer-29 py-5">
+    <div class="container py-lg-2">
+      <div class="row footer-top-29">
+        <div class="col-lg-4 col-md-6 footer-list-29 footer-1 pr-lg-5">
+          <div class="footer-logo mb-4">
+            <a class="navbar-brand" href="index.html">BigBucks</a>
+          </div>
+          <p>
+            We are committed to providing you with the best possible service and support, so please don't hesitate to
+            contact us if you have any questions or concerns.
+          </p>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-5 col-5 footer-list-29 footer-2 mt-md-0 mt-5">
+          <ul>
+            <h6 class="footer-title-29">Quick Links</h6>
+            <li><a href="{{ url_for('home.about')}}">About us</a></li>
+            <li><a href="{{ url_for('stocks.watchlist')}}"> Watchlist</a></li>
+            <li><a href="{{ url_for('stocks.portfolio')}}"> Portfolio</a></li>
+            {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('users.user_profile')}}">Account</a></li>
+            {% endif%}
+            <li><a href="{{ url_for('home.about')}}">Contact us</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-5 col-5 footer-list-29 footer-3 mt-md-0 mt-5">
+          <ul>
+            <h6 class="footer-title-29">Follow us</h6>
+            <li><a href="{{ url_for('home.about')}}">Facebook</a></li>
+            <li><a href="{{ url_for('home.about')}}">Twitter</a></li>
+            <li><a href="{{ url_for('home.about')}}"> Instagram</a></li>
+            <li><a href="{{ url_for('home.about')}}">LinkedIn</a></li>
+            <li><a href="{{ url_for('home.about')}}">YouTube</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- copyright -->
+  <section class="w3l-copyright text-center">
+    <div class="container">
+      <p class="copy-footer-29"> - 2023 Spring Fintech 512 -</p>
+    </div>
+
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+      &#10548;
+    </button>
+    <script>
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function () {
+        scrollFunction();
+      };
+
+      function scrollFunction() {
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          document.getElementById("movetop").style.display = "block";
+        } else {
+          document.getElementById("movetop").style.display = "none";
+        }
+      }
+
+      // When the user clicks on the button, scroll to the top of the document
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    </script>
+    <!-- /move top -->
+  </section>
+  <!-- //copyright -->
+</section>
+<!-- //footer -->
+
+{% endblock %}
+
+{% block javascript %}
+
+<!-- script for banner slider-->
+<script>
+  $(document).ready(function () {
+    $(".owl-one").owlCarousel({
+      loop: true,
+      margin: 0,
+      nav: false,
+      responsiveClass: true,
+      autoplay: true,
+      autoplayTimeout: 5000,
+      autoplaySpeed: 1000,
+      autoplayHoverPause: false,
+      responsive: {
+        0: {
+          items: 1,
+        },
+        480: {
+          items: 1,
+        },
+        667: {
+          items: 1,
+        },
+        1000: {
+          items: 1,
+        },
+      },
+    });
+  });
+</script>
+<!-- //script -->
+
+{% endblock %}

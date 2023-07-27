@@ -1,0 +1,59 @@
+{% extends "base_subpage.html" %}
+
+{% block title %}
+<title>BigBucks - Watchlist</title>
+{% endblock %}
+
+{% block sub_header%}
+<a href="{{ url_for('stocks.watchlist') }}">Watchlist</a>
+{% endblock %}
+
+{% block sub_content%}
+<div class="container py-lg-5 py-md-3">
+  <h3 class="title-big mb-4">My Watchlist</h3>
+  <div class="table-responsive">
+    <table class="table custom-table">
+      <thead>
+        <tr>
+          <th scope="col">Stock Symbol</th>
+          <th scope="col">Company Name</th>
+          <th scope="col">Current Market Price ($)</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for stock in stock_data %}
+        <tr scope="row">
+          <td>{{ stock.symbol }}</td>
+          <td>{{ stock.company }}</td>
+          <td>${{ stock.current_price }}</td>
+          <td>
+            <form action="{{ url_for('stocks.remove_watch_item') }}" method="POST">
+              <input type="hidden" name="stock.id" value="{{stock.id}}"
+                onclick="return confirm('Are you sure you want to delete {{stock.symbol}} from your wat list?');">
+              <button type="submit" class="btn btn-danger">Remove</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="container py-lg-5 py-md-3">
+  <div class="add-stock-form">
+    <h2 class="title-big mb-4">Add a stock to your watchlist</h2>
+    <form action="{{ url_for('stocks.add_stock_to_watchlist') }}" method="POST">
+      <div class="form-group">
+        <label for="stockSymbol"></label>
+        <input type="text" class="form-control" id="stockSymbol" name="stockSymbol" placeholder="STOCK SYMBOL" required
+          pattern="[A-Za-z0-9]+" title="Please enter a valid stock symbol (letters and numbers only)" />
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary mt-sm-5 mt-4">Add to Watchlist</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

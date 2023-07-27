@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  {% block title %}
+  {% endblock %}
+
+  <!-- CSS & favicon -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/x-icon" />
+
+  <!--Other Links-->
+  <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+  <script src="https://kit.fontawesome.com/3c5e2e8927.js" crossorigin="anonymous"></script>
+
+  <!-- Additional Styling -->
+  {% block style %}
+  {% endblock %}
+</head>
+
+<body>
+  <!--header-->
+  <header id="site-header" class="fixed-top">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg stroke px-0">
+        <h1>
+          <a class="navbar-brand" href="{{ url_for('home.index') }}">
+            BigBucks
+          </a>
+        </h1>
+
+        <button class="navbar-toggler collapsed bg-gradient" type="button" data-toggle="collapse"
+          data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+          <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav ml-auto">
+
+            {% if current_user.is_authenticated %}
+
+            <li class="nav-item @@about__active">
+              <a class="nav-link" href="{{ url_for('stocks.trade_stock') }}">Trading</a>
+            </li>
+            <li class="nav-item @@about__active">
+              <a class="nav-link" href="{{ url_for('stocks.watchlist') }}">Watchlist</a>
+            </li>
+
+            <li class="nav-item @@about__active">
+              <a class="nav-link" href="{{ url_for('stocks.portfolio') }}">Portfolio</a>
+            </li>
+
+            <li class="nav-item @@about__active">
+              <a class="nav-link" href="{{ url_for('stocks.transaction_history') }}">Transaction
+                History</a>
+            </li>
+
+
+            <li class="nav-item @@services__active">
+              <a class="nav-link" href="{{ url_for('users.user_profile') }}">Account</a>
+            </li>
+            <li class="nav-item @@contact__active">
+              <a class="nav-link" href="{{ url_for('users.logout') }}">Log out</a>
+            </li>
+
+            {% else %}
+
+            <li class="nav-item @@about__active">
+              <a class="nav-link" href="{{ url_for('home.index') }}">About</a>
+            </li>
+            <li class="nav-item @@services__active">
+              <a class="nav-link" href="{{ url_for('users.register') }}">Register</a>
+            </li>
+            <li class="nav-item @@contact__active">
+              <a class="nav-link" href="{{ url_for('users.login') }}">Login</a>
+            </li>
+
+            {% endif %}
+
+            <!--/search-right-->
+            <div class="search mr-3">
+              <input class="search_box" type="checkbox" id="search_box" />
+              <label class="fa fa-search" for="search_box"></label>
+              <div class="search_form">
+                <form action="error.html" method="GET">
+                  <input type="text" placeholder="Search" /><input type="submit" value="search" />
+                </form>
+              </div>
+            </div>
+            <!--//search-right-->
+
+          </ul>
+        </div>
+
+      </nav>
+    </div>
+  </header>
+  <!--/header-->
+
+
+  <!-- flash messages -->
+  <!-- supported categories: success, info, error, message (default) -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  {% for category, message in messages %}
+  <div class="alert__container alert__container-{{ category }}">
+    <div class="alert__content">
+      {% if category == 'info' %}
+      <i class="fas fa-exclamation-circle alert__icon"></i>
+      {% elif category == 'error' %}
+      <i class="fas fa-minus-circle alert__icon"></i>
+      {% elif category == 'success' %}
+      <i class="fas fa-check-circle alert__icon"></i>
+      {% else %}
+      <i class="fas fa-exclamation-circle alert__icon"></i>
+      {% endif %}
+      <div class="alert__text">
+        {{ message }}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+  <!-- child template -->
+  {% block content %}
+  {% endblock %}
+
+</body>
+
+
+<!-- ==== javascripts file here ==== -->
+<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/circles.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<!-- owl carousel -->
+<script src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
+<!-- flash messages -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const alertContainers = document.querySelectorAll(".alert__container");
+
+    alertContainers.forEach(function (container) {
+      window.setTimeout(function () {
+        container.style.transition = "opacity 0.5s";
+        container.style.opacity = "0";
+
+        window.setTimeout(function () {
+          container.remove();
+        }, 500);
+      }, 3000);
+    });
+  });
+</script>
+<!-- disable body scroll which navbar is in active -->
+<script>
+  $(function () {
+    $(".navbar-toggler").click(function () {
+      $("body").toggleClass("noscroll");
+    });
+  });
+</script>
+<!--/MENU-JS-->
+<script>
+  $(window).on("scroll", function () {
+    var scroll = $(window).scrollTop();
+
+    if (scroll >= 80) {
+      $("#site-header").addClass("nav-fixed");
+    } else {
+      $("#site-header").removeClass("nav-fixed");
+    }
+  });
+
+  // Main navigation Active Class Add Remove
+  $(".navbar-toggler").on("click", function () {
+    $("header").toggleClass("active");
+  });
+  $(document).on("ready", function () {
+    if ($(window).width() > 991) {
+      $("header").removeClass("active");
+    }
+    $(window).on("resize", function () {
+      if ($(window).width() > 991) {
+        $("header").removeClass("active");
+      }
+    });
+  });
+</script>
+
+{% block javascript %}
+{% endblock %}
+
+
+</html>

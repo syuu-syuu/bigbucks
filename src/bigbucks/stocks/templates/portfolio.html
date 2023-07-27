@@ -1,0 +1,69 @@
+{% extends "base_subpage.html" %}
+
+{% block title %}
+<title>BigBucks - Portfolio</title>
+{% endblock %}
+
+
+{% block sub_header %}
+<a href="{{ url_for('stocks.portfolio') }}">Portfolio</a>
+{% endblock %}
+
+{% block sub_content%}
+<div class="container py-lg-5 py-md-3">
+  <h3 class="title-big mb-4">My Holdings</h3>
+  <div class="table-responsive">
+    <table class="table custom-table">
+      <thead>
+        <tr>
+          <th scope="col">Stock Symbol</th>
+          <th scope="col">Average Purchase Price ($)</th>
+          <th scope="col">Current Market Price ($)</th>
+          <th scope="col">Total Amount of Shares </th>
+          <th scope="col">Latest Trade Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for stock in stock_data %}
+        <tr scope="row">
+          <td>
+            <a href="{{ url_for('stocks.detail', symbol=stock['symbol']) }}">
+              {{ stock['symbol'] }}
+              <small class="d-block">{{ stock['company'] }}</small>
+          </td>
+          <td>
+            {{ stock['average_purchase_price'] }}
+          </td>
+          <td>
+            {{ stock['current_price'] }}
+          </td>
+          <td>
+            {{ stock['shares'] }}
+          </td>
+          <td>{{ stock['latest_trade_time'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container py-lg-5 py-md-3">
+  <h3 class="title-big mb-4">Statistics</h3>
+  <div class="row stats-con">
+    <div class="col-md-3 col-6 stats_info counter_grid">
+      <p class="counter">${{ summary.total_asset }}</p>
+      <h3>Total Asset</h3>
+    </div>
+    <div class="col-md-3 col-6 stats_info counter_grid1">
+      <p class="counter">${{ summary.total_earnings }}</p>
+      <h3>Total Earnings</h3>
+    </div>
+    <div class="col-md-3 col-6 stats_info counter_grid mt-md-0 mt-4">
+      <p class="counter"> {{ summary.total_return }}%</p>
+      <h3>Total Return</h3>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

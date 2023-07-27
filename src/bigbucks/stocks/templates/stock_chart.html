@@ -1,0 +1,108 @@
+{% extends "base_subpage.html" %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/calendar.css') }}" />
+{% endblock %}
+
+{% block title %}
+<title>BigBucks - Detail</title>
+{% endblock %}
+
+
+{% block sub_header%}
+<a href="{{ url_for('stocks.detail', symbol=symbol) }}">Stock detail</a>
+{% endblock %}
+
+{% block sub_content%}
+<div class="midd-w3 py-5">
+    <div class="container">
+        <h3 class="title-medium mb-4">Choose the starting and ending dates to view more price changes </h3>
+        <form action="{{ url_for('stocks.detail', symbol=symbol) }}" method="POST" class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="input_from">From</label>
+                    <input type="text" class="form-control" id="input_from" placeholder="Start Date" name="start_date">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="input_from">To</label>
+                    <input type="text" class="form-control" id="input_to" placeholder="End Date" name="end_date">
+                </div>
+            </div>
+            <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-primary">Generate a new chart</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container py-lg-5 py-md-3">
+        <canvas id="price-chart" style="width:100%;max-width:1500px"></canvas>
+    </div>
+
+    <div class="container py-lg-5 py-md-3">
+        <canvas id="earning-chart" style="width:100%;max-width:1500px"></canvas>
+    </div>
+
+</div>
+{% endblock %}
+
+
+{% block javascript %}
+<script src="{{url_for('static', filename='js/rome.js')}}"></script>
+<script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script>
+<script>
+    const xValues = JSON.parse('{{ date | tojson | safe}}');
+    const yValues = JSON.parse('{{ adjclose | tojson | safe}}');
+    const lineColor = yValues[yValues.length - 1] >= yValues[0] ? "rgba(0,255,0,1.0)" : "rgba(255,0,0,1.0)";
+
+    new Chart("price-chart", {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: lineColor,
+                label: "",
+                borderColor: lineColor,
+                data: yValues,
+                pointBackgroundColor: lineColor,
+                pointBorderColor: lineColor,
+                pointRadius: 3
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: "Price Change of {{symbol}}"
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: "Date"
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: "Price"
+                    }
+                }
+            }
+        }
+
+    });
+</script>
+
+
+
+{% endblock %}
