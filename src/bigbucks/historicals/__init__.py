@@ -1,25 +1,6 @@
 import yfinance as yf
-from bigbucks.model import sp500data, FiveYearHoldings, Stock
+from bigbucks.model import FiveYearHoldings, Stock
 from bigbucks import database
-
-
-
-def update_sp500_data():
-    database.session.query(sp500data).delete()
-    database.session.commit()    
-    sp500 = yf.Ticker("^GSPC")
-    hist_data = sp500.history(period="5y")
-    for index, row in hist_data.iterrows():
-        sp5005yr = sp500data(
-            date = index.date(),
-            open = row["Open"],
-            high = row["High"],
-            low = row["Low"],
-            close = row["Close"],
-            volume = row["Volume"],
-        )
-        database.session.add(sp5005yr)
-    database.session.commit()
 
 
 def update_portfolio_history_data():

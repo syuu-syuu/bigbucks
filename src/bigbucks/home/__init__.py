@@ -1,6 +1,6 @@
 import yfinance as yf
 from flask import Blueprint, render_template
-from bigbucks.model import Stock, sp500data
+from bigbucks.model import Stock
 from bigbucks import database
 from flask_login import login_required, current_user
 from yahooquery import Ticker

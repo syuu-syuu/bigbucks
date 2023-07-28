@@ -16,6 +16,7 @@ class Config(object):
     # The "sqlite:" prefix indicates that the database is a SQLite database.
     # The three forward slashes are a convention used to indicate the absolute path to the SQLite database file.
     BASEDIR = os.path.abspath(os.path.dirname(__file__))
+    
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL',
                                         default=f"sqlite:///{os.path.join(BASEDIR, 'instance', 'app.db')}")
     SQLALCHEMY_TRACK_MODIFICATIONS = False

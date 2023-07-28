@@ -6,7 +6,7 @@ from sqlalchemy.exc import IntegrityError
 from bigbucks import database, login_manager
 from bigbucks.model import User
 from flask_login import login_user, current_user, login_required, logout_user
-from bigbucks.historicals import update_portfolio_history_data, update_sp500_data
+from bigbucks.historicals import update_portfolio_history_data
 
 users_bp = Blueprint('users', __name__, template_folder='templates')
 
@@ -85,7 +85,6 @@ def login():
             else:
                 login_user(user, remember=form.remember_me.data)
                 flash(f'Thanks for logging in, {current_user.username}!')
-                update_sp500_data()
                 update_portfolio_history_data
                 return redirect(url_for('home.index'))
 
