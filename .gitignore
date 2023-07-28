@@ -1,4 +1,11 @@
-*.js
+/src/venv/*
+/bin/cdk-pipeline-eb.js
+/lib/cdk-pipeline-stack.js
+/lib/eb-appln-stack.js
+/lib/eb-stage.js
+/test/cdk-pipeline-eb.test.js
+
+# *.js
 !jest.config.js
 *.d.ts
 node_modules
