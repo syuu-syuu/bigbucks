@@ -10,8 +10,6 @@
   {% block title %}
   {% endblock %}
 
-  <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
-  
   <!-- CSS & favicon -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
   <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/x-icon" />
@@ -140,7 +138,7 @@
 
 
 <!-- ==== javascripts file here ==== -->
-
+<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/circles.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <!-- owl carousel -->
