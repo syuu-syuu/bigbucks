@@ -159,6 +159,32 @@ class WatchStock(database.Model):
         self.stock_symbol = stock_symbol
         self.user_id = user_id
 
+
+class sp500data(database.Model):
+    "Database table which contains 5 years of S&P500 data"
+
+    __tablename__ = "sp500data"
+
+    id = database.Column(database.Integer, primary_key=True)
+    date = database.Column(database.Date, nullable=False)
+    open = database.Column(database.Float, nullable=False)
+    high = database.Column(database.Float, nullable=False)
+    low = database.Column(database.Float, nullable=False)
+    close = database.Column(database.Float, nullable=False)
+    volume = database.Column(database.Integer, nullable=False)
+
+    def __init__(self, date, open, high, low, close, volume):
+        self.date = date
+        self.open = open
+        self.high = high
+        self.low = low
+        self.close = close
+        self.volume = volume
+
+    def __repr__(self):
+        return f'<StockData {self.date} {self.close}>'
+
+
 class FiveYearHoldings(database.Model):
     "Database table which contains 5 years of of all stocks held by users."
 

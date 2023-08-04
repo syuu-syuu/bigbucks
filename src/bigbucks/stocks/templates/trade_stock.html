@@ -20,6 +20,7 @@
 <div class="container py-lg-5 py-md-3">
   <h3 class="title-big mb-4">Real-time transactions</h3>
   <form method='POST' action="{{ url_for('stocks.trade_stock') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
     <input type="hidden" name="form_id" value="form1" />
     <div class="zf-subContWrap zf-rightAlign">
       <ul>
@@ -98,6 +99,7 @@
 <div class="container py-lg-5 py-md-3">
   <h3 class="title-big mb-4">Add historical transactions</h3>
   <form method='POST' action="{{ url_for('stocks.trade_stock') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
     <input type="hidden" name="form_id" value="form2" />
     <div class="zf-subContWrap zf-rightAlign">
       <ul>

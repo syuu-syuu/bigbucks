@@ -1,9 +1,101 @@
 {% extends "base_subpage.html" %}
 
+{% block title %}
+<title>BigBucks - About</title>
+{% endblock %}
+
 
 {% block sub_content %}
 
-<div class="container py-lg-5 py-md-3">
-    <h3 class="title-big mb-4">Under Development...</h3>
-</div>
+<section class="w3l-index3" id="about">
+    <div class="midd-w3 py-5">
+        <div class="container py-lg-5 py-md-3">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        <img src="{{ url_for('static', filename='/img/about1.jpg') }}" alt="" class="radius-image img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-lg-0 mt-md-5 mt-4 align-self">
+                    <h4 class="title-big mx-0">Information Hierarchy</h4>
+                    <p class="mt-md-4 mt-3">Highlight key statistical information on the homepage to make sure that the most relevant and valuable data is easily accessible to users.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="w3l-services py-5">
+    <div class="container py-lg-5 py-md-4 py-2">
+        <div class="row bottom-ab-grids">
+            <div class="col-lg-6 bottom-ab-left align-self">
+                <h4 class="title-big mb-4">Comprehensive Functions</h4>
+                <div class="cont-4 mt-lg-5 mt-4">
+                    <div class="list mb-4">
+                        <span class="fa fa-check"></span>
+                        <div class="list-info">
+                            <h4>Stay updated with Watchlist</h4>
+                            <p>You can add your favorite stocks in Watchlist page to track current market price.</p>
+                        </div>
+                    </div>
+                    <div class="list">
+                        <span class="fa fa-check"></span>
+                        <div class="list-info">
+                            <h4>Transaction records when you need them</h4>
+                            <p>You can see all your historical buy/sell transactions in Transaction History page.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 bottom-right-grids mt-lg-0 mt-5">
+                <img src="{{url_for('static', filename = '/img/about2.jpg')}}" alt="" class="radius-image img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="w3l-index3" id="about">
+    <div class="midd-w3 py-5">
+        <div class="container py-lg-5 py-md-3">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        <img src="{{ url_for('static', filename='/img/about3.jpg') }}" alt=""
+                            class="radius-image img-fluid">
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-lg-0 mt-md-5 mt-4 align-self">
+                    <h4 class="title-big mx-0">Advanced Stock Analysis</h4>
+                    <p class="mt-md-4 mt-3">Benchmark behavior against the market.</p>
+                    <p class="mt-md-4 mt-3">Identify opportunities to trade volatility, momentum, or your own trading
+                        strategies.</p>
+                    <p class="mt-md-4 mt-3">Ready-to-use analysis, 24/7</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="w3l-services py-5">
+    <div class="container py-lg-5 py-md-4 py-2">
+        <div class="row bottom-ab-grids">
+            <div class="col-lg-6 bottom-ab-left align-self">
+                <h4 class="title-big mb-4">Track Tick Price</h4>
+                <p>See a detailed graph plotting the price changes of the selected tick over your desired timeframe.</p>
+                
+            </div>
+            <div class="col-lg-6 bottom-right-grids mt-lg-0 mt-5">
+                <img src="{{url_for('static', filename = '/img/price1.jpg')}}" alt="" class="radius-image img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+
 {% endblock %}

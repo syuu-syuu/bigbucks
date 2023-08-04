@@ -516,6 +516,7 @@ def calculate_summary_data(stocks):
     total_earnings = 0
     total_return_percentage = 0
     total_principle = 0
+
     for stock in stocks:
         current_price = get_market_price(stock.stock_symbol)
         total_asset += current_price * stock.total_shares

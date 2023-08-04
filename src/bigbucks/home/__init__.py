@@ -27,3 +27,7 @@ def index():
 @home_bp.route('/about')
 def about():
     return render_template('about.html')
+
+@home_bp.route('/other')
+def other():
+    return render_template('other.html')

@@ -7,11 +7,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap4
+from flask_wtf.csrf import CSRFProtect
 
 
 database = SQLAlchemy()
 migration = Migrate()
 login_manager = LoginManager()
+csrf_protection = CSRFProtect()
 
 
 # Factory function for creating app instance
@@ -29,6 +31,7 @@ def create_app():
     database.init_app(app)
     migration.init_app(app, database)
     login_manager.init_app(app)
+    csrf_protection.init_app(app)
     Bootstrap4(app)
 
     import sqlalchemy as sa

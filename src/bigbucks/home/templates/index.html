@@ -220,23 +220,24 @@
           <ul>
             <h6 class="footer-title-29">Quick Links</h6>
             <li><a href="{{ url_for('home.about')}}">About us</a></li>
+          
+            {% if current_user.is_authenticated %}
             <li><a href="{{ url_for('stocks.watchlist')}}"> Watchlist</a></li>
             <li><a href="{{ url_for('stocks.portfolio')}}"> Portfolio</a></li>
-            {% if current_user.is_authenticated %}
             <li><a href="{{ url_for('users.user_profile')}}">Account</a></li>
             {% endif%}
-            <li><a href="{{ url_for('home.about')}}">Contact us</a></li>
+            <li><a href="{{ url_for('home.other')}}">Contact us</a></li>
           </ul>
         </div>
 
         <div class="col-lg-2 col-md-6 col-sm-5 col-5 footer-list-29 footer-3 mt-md-0 mt-5">
           <ul>
             <h6 class="footer-title-29">Follow us</h6>
-            <li><a href="{{ url_for('home.about')}}">Facebook</a></li>
-            <li><a href="{{ url_for('home.about')}}">Twitter</a></li>
-            <li><a href="{{ url_for('home.about')}}"> Instagram</a></li>
-            <li><a href="{{ url_for('home.about')}}">LinkedIn</a></li>
-            <li><a href="{{ url_for('home.about')}}">YouTube</a></li>
+            <li><a href="{{ url_for('home.other')}}">Facebook</a></li>
+            <li><a href="{{ url_for('home.other')}}">Twitter</a></li>
+            <li><a href="{{ url_for('home.other')}}"> Instagram</a></li>
+            <li><a href="{{ url_for('home.other')}}">LinkedIn</a></li>
+            <li><a href="{{ url_for('home.other')}}">YouTube</a></li>
           </ul>
         </div>
 
